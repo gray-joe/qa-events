@@ -9,20 +9,8 @@ services:
       POSTGRES_USER: "user"
       POSTGRES_PASSWORD: "password"
     networks:
-      - meh
-
-  web:
-    build: .
-    ports:
-      - "5000:5000"  # Map host port 5000 to container port 5000
-    environment:
-      FLASK_ENV: development
-    command: ["./wait-for-it.sh", "db:5432", "--", "python", "lambda.py"]
-    depends_on:
-      - db
-    networks:
-      - meh
+      - events
 
 networks:
-  meh:
+  events:
     driver: bridge
